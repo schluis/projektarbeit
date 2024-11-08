@@ -57,7 +57,7 @@ The model's potential performance will be demonstrated in a simple task in the c
 == Potential Impact  
 
 To date, there is no implementation of a NAO model suitable for reinforcement learning research, i.e. a model that accurately models motor dynamics while being fast enough for simulation use.
-This work could fill this gap, providing a valuable resource for the RoboCup community, lowering the barriers for more teams to start RL research, and enabling more students to get involved in this field.
+This work fills this gap, providing a valuable resource for the RoboCup community, lowering the barriers for more teams to start RL research, and enabling more students to get involved in this field.
 
 == Research Questions
 
