@@ -11,42 +11,69 @@
   // font: Inter,
 )
 #set par(justify:true)
+#set list(marker: "–")
 
 #set page(
   paper:"a4",
-  header: align(right)[
-    Luis Scheuch | 2024-11
+  header: [
+    Exposé Projektarbeit Luis Scheuch 
+    #h(1fr)
+    2024-11
   ],
 )
+#set page(footer: context align(right)[
+  #counter(page).display(
+    "1/1",
+    both: true,
+  )
+])
 
-= Projektarbeit HULKs | Exposé
-#v(10pt)
-
-Working title:
-// Creating a Virtual NAO Robot Model for Reinforcement Learning: Translating Motor Dynamics and System Behavior into a Simulation Framework.
-Creating a Virtual NAO Robot Model for Reinforcement Learning: Enabling Advanced Motion Algorithms for the HULKs and the RoboCup Community.
+= Modeling a Robot for Reinforcement Learning
+Enabling Advanced Motion Algorithms for the HULKs and the RoboCup Community
 #v(5pt)
 
-+ Introduction  
-  - Background: The #link("https://hulks.de")[HULKs] are the #link("https://spl.robocup.org/")[RoboCup SPL] team of the Hamburg University of Technology. 
-    We are programming robots in Rust to autonomously play soccer.
-    Currently, all motion-related tasks, such as standing up, walking, kicking, etc. are classical algorithms or hand-tuned keyframe animations. Tuning these is an error-prone and time-consuming task.
-  - Problem Statement: New methods from reinforcement learning (RL) could be used to improve the motion of the robots. 
-    However, the current, unmaintained simulation framework does not provide the means to simulate the motor dynamics and system behavior of the robots and the performance, which is necessary for RL.
-  - Objectives: Compare existing simulation frameworks, identify the requirements for a simulation framework for the HULKs, identify key parameters to succeed in Sim2Real and develop a prototype for a virtual #link("https://www.aldebaran.com/en/nao")[NAO] robot model that can be used for further RL research.
-    If time permits, implement a simple RL algorithm to demonstrate the capabilities of the simulation framework and the model built.
+== Introduction  
 
-+ Significance and Impact  
-  - Currently, there is no implementation of a NAO model which is appropriate for reinforcement learning research. This research could fill this gap and provide a valuable resource for the RoboCup community.
-  - Creating a virtual NAO robot model for reinforcement learning could enable the HULKs to develop more advanced motion algorithms and enable more students to contribute to the project.
+Artificial intelligence and robotics are one of the most promising fields in the future of manufacturing and automation technology @wef2023future @Duggal_2022.
+To promote research in this field, various competitions exist, such as the #link("https://www.robocup.org/")[RoboCup] @robocup_objective.
+It was launched with the vision of creating a team of autonomous humanoid robots capable of defeating the human soccer champions by 2050.
+For that, RoboCup teams have developed a variety of algorithms designed to handle the complexities of soccer, including perception, decision-making, and motion control.
 
-+ Timeline  
+In the #link("https://spl.robocup.org/")[RoboCup Standard Platform League (SPL)], most teams rely mainly on classical algorithms for motion control, such as the widely adopted walking algorithm by #cite(<hengst2014walk>, form: "author") or hand-tuned keyframe animations, such as the default motions by the manufacturer #cite(<softbank_motions>).
+Tuning these algorithms is an error-prone and time-consuming task.
+There are many parameters to tune, there's always the risk of overfitting to a specific robot and specific knowledge and experience is required to achieve good results.
+
+Methods from reinforcement learning (RL) could be a solution to this problem.
+Various works demonstrate the potential of RL for robotic soccer (@Haarnoja_2024 @vanmarum2024revisitingrewarddesignevaluation @Kober_2013) and since all teams use the same robot, the #link("https://www.aldebaran.com/en/nao")[NAO], results are expected to easily be transferable between teams.
+
+== Research Goals
+
+This work won't soley focus on the SPL, but also on the broader RoboCup community and thus general robotics research.
+The main goals are to identify necessary requirements for a simulation framework, compare existing simulation frameworks, identify key parameters to succeed in transfering a learned model to the real hardware and to develop a prototype for a virtual NAO model that can be used within the SPL.
+To evaluate the model's accuracy and physical capabilities, simulation results will be compared with real-world data, as suggested by #cite(<pepper_2007>, form: "author").
+The model's potential performance will be demonstrated in a simple task in the chosen RL framework.
+
+
+== Potential Impact  
+
+To date, there is no implementation of a NAO model suitable for reinforcement learning research, i.e. a model that accurately models motor dynamics while being fast enough for simulation use.
+This work could fill this gap, providing a valuable resource for the RoboCup community, lowering the barriers for more teams to start RL research, and enabling more students to get involved in this field.
+
+== Research Questions
+
+- What are necessary requirements for a simulation framework suitable for RL-based motion control in humanoid robotics?
+- How do existing simulation frameworks compare in terms of accuracy, efficiency, computational performance, usability and hardware requirements?
+- Which key parameters are critical for successfully transferring a reinforcement learning model from simulation to the physical NAO robot?
+- How well does the developed virtual NAO model replicate real-world performance in terms of accuracy and physical capabilities when compared to empirical data?
+  - How does it compare in extreme situations, such as standing up?
+  - Can the model replicate motor errors, such as a stuck joint?
+
+== Timeline  
   - Literature Review: 60h 
   - Simulation Framework Requirements: 25h
   - Prototype Development: 50h
   - RL Algorithm Implementation: 25h
   - Evaluation: 20h
 
-+ Excerpt from Available Literature 
-  #bibliography("literature.bib", full:true, title:none)
-
+#v(10pt)
+#bibliography("literature.bib")
